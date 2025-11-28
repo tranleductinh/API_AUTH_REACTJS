@@ -14,7 +14,8 @@ const SignUpPage = () => {
   const handleSignUp = async () => {
     try {
       setLoading(true);
-      await signUpUser({ email, password, name });
+      if(email.trim() === "" || password.trim() === "" || name.trim() === "") return toast.error("Please fill all the fields");
+      await signUpUser({email: email.trim(), password: password.trim(), name: name });
     } catch (error) {
       console.error(error);
       toast.error(error.response.data.message);

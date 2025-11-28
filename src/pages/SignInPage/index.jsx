@@ -12,6 +12,7 @@ const SignInPage = () => {
   const handleSignIn = async () => {
     try {
       setLoading(true);
+      if (email.trim() === "" || password.trim() === "") return toast.error("Please fill all the fields");
       await signInUser({ email, password });
     } catch (error) {
       console.error(error);
